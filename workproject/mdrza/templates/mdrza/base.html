@@ -1,0 +1,41 @@
+{% load staticfiles %}
+<html>
+    <head>
+        <title>Mit dem Rad zur Arbeit</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{% static 'css/mdrza.css' %}">
+    </head>
+	<body>
+	<div class="page-header">
+<h1 class="header">Mit dem Rad zur Arbeit - OFD Niedersachsen</h1>
+	    {% if user.is_authenticated %}
+	        {% if user.radler.pk %}
+	            <p class="top-menu">Angemeldet als <a href="{% url 'radler_detail' pk=user.radler.pk %}">
+		    {{ user.radler.vname }} {{ user.radler.nname }}</a> ({{ user.username }}) 
+	            <a href="{% url 'radler_edit' pk=user.radler.pk %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a>
+	        {% else %}
+	            <a href="{% url 'radler_new' %}">Profil vervollständigen!</a>
+	        {% endif %}
+	        <a href="{% url 'django.contrib.auth.views.logout' %}"><span class="glyphicon glyphicon-log-out"</a></p>
+	    {% else %}
+	        <a href="{% url 'django.contrib.auth.views.login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
+	        <a href="{% url 'mdrza.views.register' %}" class="top-menu">Noch nicht registriert?</a>
+	    {% endif %}
+	    <h1><a href="{% url 'mdrza.views.team_list' %}">Teamrangliste</a> <a href="{% url 'mdrza.views.radler_list' %}">Radlerrangliste</a> </h1>
+	    {% if user.is_authenticated and user.radler.pk %}
+	            <a href="{% url 'woche_new' %}" class="top-menu">neue Woche <span class="glyphicon glyphicon-plus"></span></a>
+	    {% endif %}
+	</div>
+	    <div class="content">
+		<div class="row">
+		    <div class="col-md-8">
+		    {% block content %}
+		    {% endblock %}
+		    </div>
+		</div>
+	    </div>
+	</body>
+</html>
+

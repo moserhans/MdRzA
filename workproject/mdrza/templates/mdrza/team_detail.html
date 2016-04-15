@@ -1,0 +1,14 @@
+{% extends 'mdrza/base.html' %}
+
+{% block content %}
+        <div class="team">
+	    <h1>Team {{ team.name }}</h1>
+            <p>ist aktuell {{ gesamt_km }} km gefahren.</p>
+    </div>
+    <h2>Mitglieder des Teams</h2>
+    <table><tr><th>Name</th><th>km</th></tr>
+    {% for mitglied in team.members.all %}
+    <tr><td><a href="{% url 'radler_detail' pk=mitglied.pk %}">{{ mitglied.vname }} {{ mitglied.nname }}</a></td><td class="km">{{ mitglied.gesamtkm }}</td></tr>
+    {% endfor %}
+    </table>
+{% endblock %}

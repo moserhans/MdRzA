@@ -1,0 +1,40 @@
+body {
+    padding-left: 15px;
+}
+h1 {
+    text-align: center;
+    color: darkgrey;
+    font-family: 'Lobster';
+}
+table {
+	   /*border: 1px solid black; */
+	   width: 230px;
+	   height: 60px;
+	   margin: 3px;
+	   padding: 10px;
+	   vertical-align: middle;
+	   clear: right;
+	   float: left;
+   } 
+tr {
+	background-color: lightgrey;
+}
+tr:hover {
+	background-color: lightblue;
+}
+th {
+	 background-color: rgb(66, 139, 202);
+	     color: white;
+	    text-align: center;
+    }
+.km {
+	text-align: right;
+	width: 40px;
+	padding: 5px;
+}
+td {
+	padding-left: 10px;
+}
+.header {
+	color: black;
+}

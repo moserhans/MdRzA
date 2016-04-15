@@ -1,0 +1,28 @@
+{% extends 'mdrza/base.html' %}
+
+{% block content %}
+        <div class="radler">
+		<h1>{{ radler.vname}} {{ radler.nname }}</a> </h1>
+            <h2>ist aktuell {{ gesamt_km }} Gesamtkilometer</h2>
+	    <h3>für Team <a href="{% url 'team_detail' pk=radler.team.pk %}">{{ radler.team }}</a> gefahren.</h3>
+	    <br/><br/><p>km pro Tag: {{ radler.km }}
+	{% if user.is_authenticated and user.pk == radler.user.pk %}
+	    <a class="btn btn-default btn-sm" href="{% url 'radler_edit' pk=radler.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+	{% endif %}
+	</p>
+    </div>
+    <h2>Wochenkilometer
+	{% if user.is_authenticated and user.pk == radler.user.pk %}
+	<a class="btn btn-default btn-sm" href="{% url 'woche_new' %}"><span class="glyphicon glyphicon-plus"></span></a>
+	{% endif %}
+    </h2>
+    {% for woche in radler.weeks.all %}
+    <ul>
+    <li>Woche <a href="{% url 'woche_detail' pk=woche.pk %}">{{ woche.kwnr }}</a> - {% for w,k in wochen.iteritems %} {% if w == woche.pk %} {{ k }} {% endif %} {% endfor %} km 
+	{% if user.is_authenticated and user.pk == radler.user.pk %}
+	    <a class="btn btn-default btn-sm" href="{% url 'woche_edit' pk=woche.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+	    {% endif %}
+     </li>	    
+    </ul>	
+    {% endfor %}
+{% endblock %}

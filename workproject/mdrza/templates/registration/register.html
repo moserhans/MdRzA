@@ -1,0 +1,13 @@
+{% extends "mdrza/base.html" %}
+
+{% block title %}Einen Account anlegen{% endblock %}
+
+{% block content %}
+  <h1>Einen Account bei Mit dem Rad zur Arbeit anlegen</h1>
+
+  <form action="" method="post">
+	  {% csrf_token %} 
+     	  {{ form.as_p }}
+      <input type="submit" value="Anlegen">
+  </form>
+{% endblock %}

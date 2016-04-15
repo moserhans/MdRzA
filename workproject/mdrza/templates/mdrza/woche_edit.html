@@ -1,0 +1,14 @@
+{% extends 'mdrza/base.html' %}
+
+{% block content %}
+        <div class="woche">
+	<h1>KW bearbeiten</h1>
+	    {{ user.radler.vname }} {{ user.radler.nname }} ist in der folgenden KW gefahren am:</p>
+	<p>(Aktuell haben wir die KW {{ week }}.)</p>
+	<form method="POST" class="woche-form">{% csrf_token %}
+		{{ form.as_p }}
+		<p class="erlaeuterung">Sind Sie an einem Tag einen Umweg gefahren, tragen Sie die Umweg-km zum Tag bei "extra", die regelmäßigen km sind durch die Aktivierung des entsprechenden Tages berücksichtigt.<br/>Extra-km bei nicht aktivierten Tagen werden nicht berechnet!</p> 
+		<button type="submit" class="save btn btn-default btn-lg">Speichern</button>
+	    </form>
+    </div>
+{% endblock %}
