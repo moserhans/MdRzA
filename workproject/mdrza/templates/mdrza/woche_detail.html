@@ -11,7 +11,7 @@
 	    <p>Radler <a href="{% url 'radler_detail' pk=woche.user.pk %}">{{ woche.user.vname }} {{ woche.user.nname }}</a>
 	    ist in der KW {{ woche.kwnr }} gefahren am:</p>
 	    <ul>
-	    {% if woche.mo %} <li>Montag {% if woche.mo_extra > 0 %}{{ woche.mo_extra }}mit  ExtraKilometern</li>{% endif %}{% endif %}
+	    {% if woche.mo %} <li>Montag {% if woche.mo_extra > 0 %}mit {{ woche.mo_extra }}  ExtraKilometern</li>{% endif %}{% endif %}
 	    {% if woche.di %} <li>Dienstag {% if woche.di_extra > 0 %}mit {{ woche.di_extra }} ExtraKilometern</li> {% endif %}{% endif %}
 	    {% if woche.mi %} <li>Mittwoch {% if woche.mi_extra > 0 %}mit {{ woche.mi_extra }} ExtraKilometern</li> {% endif %}{% endif %}
 	    {% if woche.do %} <li>Donnerstag {% if woche.do_extra > 0 %}mit {{ woche.do_extra }} ExtraKilometern</li> {% endif %}{% endif %}
