@@ -6,7 +6,24 @@
 	    {{ user.radler.vname }} {{ user.radler.nname }} ist in der folgenden KW gefahren am:</p>
 	<p>(Aktuell haben wir die KW {{ week }}.)</p>
 	<form method="POST" class="woche-form">{% csrf_token %}
-		{{ form.as_p }}
+
+{% for field in form %}
+	{% if forloop.first %}
+	<table class="woche">
+		<tr>
+			<th colspan=3>{{ field.label_tag }}</th>
+			<td>{{ field }}</td>
+		</tr>
+	{% else %}
+		{% if forloop.counter|divisibleby:2 %} <tr>
+			<th>{{ field.label_tag }}</th> <td>{{ field }}</td>
+		{% else %}
+			<td>{{ field.label_tag }}</td> <td>{{ field }}</td>
+		{% endif %}
+		{% if forloop.counter0|divisibleby:2 %} </tr> {% endif %}
+	{% endif %}
+	{% if forloop.last %} </table> {% endif %}
+{% endfor %}
 		<p class="erlaeuterung">Sind Sie an einem Tag einen Umweg gefahren, tragen Sie die Umweg-km zum Tag bei "extra", die regelmäßigen km sind durch die Aktivierung des entsprechenden Tages berücksichtigt.<br/>Extra-km bei nicht aktivierten Tagen werden nicht berechnet!</p> 
 		<button type="submit" class="save btn btn-default btn-lg">Speichern</button>
 	    </form>

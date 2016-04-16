@@ -10,7 +10,9 @@
 		{% endif %}
 	{% if user.is_authenticated %}
 	    <form method="POST" class="radler-form">{% csrf_token %}
-		{{ form.as_p }}
+		<table class="radler">
+		{{ form.as_table }}
+		</table>
 		<p class="erlaeuterung">Im Feld "km" geben Sie die täglich zu fahrenden Strecke - kombiniert Hin- und Rückweg - in vollen km ein.<br/><br/>
 		Gibt es Ihr Team noch nicht, wählen Sie erst "Weiss nicht" aus. Danach legen Sie ein <a href="{% url 'team_new' %}">neues Team</a> an und kommen hierher zurück.</p>
 		<button type="submit" class="save btn btn-default btn-lg">Speichern</button>

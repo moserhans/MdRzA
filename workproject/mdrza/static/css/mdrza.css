@@ -16,6 +16,23 @@ table {
 	   clear: right;
 	   float: left;
    } 
+table.woche {
+	   width: 600px;
+	   height: 250px;
+	   margin: 3px;
+	   padding: 10px;
+	   vertical-align: middle;
+   }
+table.radler {
+	   width: 400px;
+	   height: 200px;
+	   margin: 3px;
+	   padding: 10px;
+	   vertical-align: middle;
+   }
+.erlaeuterung {
+	   clear: both;
+   }
 tr {
 	background-color: lightgrey;
 }
