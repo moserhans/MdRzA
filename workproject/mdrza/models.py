@@ -12,6 +12,7 @@ class radler(models.Model):
 	team = models.ForeignKey('mdrza.team',null=True, related_name='members')
 	km = models.PositiveSmallIntegerField(null=True)
 	gesamtkm = models.PositiveSmallIntegerField(null=True)
+	gesamttage = models.PositiveSmallIntegerField(null=True,default=0)
 	def __str__(self):
 		return self.email
 

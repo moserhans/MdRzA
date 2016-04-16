@@ -3,7 +3,7 @@
 {% block content %}
         <div class="radler">
 		<h1>{{ radler.vname}} {{ radler.nname }}</a> </h1>
-            <h2>ist aktuell {{ gesamt_km }} Gesamtkilometer</h2>
+	<h2>ist aktuell {{ gesamt_km }} Gesamtkilometer in {{ gesamt_tage }} Tagen</h2>
 	    <h3>für Team <a href="{% url 'team_detail' pk=radler.team.pk %}">{{ radler.team }}</a> gefahren.</h3>
 	    <br/><br/><p>km pro Tag: {{ radler.km }}
 	{% if user.is_authenticated and user.pk == radler.user.pk %}

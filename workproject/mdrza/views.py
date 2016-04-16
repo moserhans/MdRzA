@@ -44,26 +44,29 @@ def calc_woche(woche):
 	basis_km = woche.user.km
 	km = basis_km * tage
 	km = km + extras
-	return km
+	return (km, tage)
 
 def calc_radler(Radler):
 	wochen = woche.objects.filter(user=Radler)
 	weeks = {}
 	gesamt_km = 0
+	gesamt_tage = 0
 	for w in wochen:
-		woche_km = calc_woche(w)
+		(woche_km, woche_tage) = calc_woche(w)
 		kw = w.pk
 		weeks[kw] = woche_km
 		gesamt_km = gesamt_km + woche_km
+		gesamt_tage = gesamt_tage + woche_tage
 	Radler.gesamtkm = gesamt_km
+	Radler.gesamttage = gesamt_tage
 	Radler.save()
-	return(weeks, gesamt_km)
+	return(weeks, gesamt_km, gesamt_tage)
 
 def calc_team(Team):
 	radlers = radler.objects.filter(team=Team)
 	gesamt_km = 0
 	for r in radlers:
-		(w,k) = calc_radler(r)
+		(w,k,t) = calc_radler(r)
 		gesamt_km = gesamt_km + k
 	Team.gesamtkm = gesamt_km
 	Team.save()
@@ -93,8 +96,8 @@ def radler_list(request):
 
 def radler_detail(request, pk):
         Radler = get_object_or_404(radler, pk=pk)
-	(weeks, gesamt_km) = calc_radler(Radler)
-	return render(request, 'mdrza/radler_detail.html', {'radler': Radler, 'wochen' : weeks, 'gesamt_km': gesamt_km })
+	(weeks, gesamt_km, gesamt_tage) = calc_radler(Radler)
+	return render(request, 'mdrza/radler_detail.html', {'radler': Radler, 'wochen' : weeks, 'gesamt_km': gesamt_km, 'gesamt_tage': gesamt_tage })
 
 @login_required
 def radler_new(request):
@@ -149,8 +152,8 @@ def check_woche_neu(Woche):
 
 def woche_detail(request, pk):
         Woche = get_object_or_404(woche, pk=pk)
-	woche_km = calc_woche(Woche)
-	return render(request, 'mdrza/woche_detail.html', {'woche': Woche, 'woche_km' : woche_km })
+	(woche_km, woche_tage) = calc_woche(Woche)
+	return render(request, 'mdrza/woche_detail.html', {'woche': Woche, 'woche_km' : woche_km, 'woche_tage': woche_tage })
 
 def woche_edit(request, pk):
     Woche = get_object_or_404(woche, pk=pk)

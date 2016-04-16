@@ -1,12 +1,12 @@
 {% extends 'mdrza/base.html' %}
 
 {% block content %}
-	<h1>Rangliste der Radler</h1>
+	<h1>Rangliste der Radler (nach km)</h1>
     {% for r in radler %}
         <div class="radlerliste">
 		<table>
-			<tr><th>Platz {{forloop.counter}}</th><th>km</th></tr>
-			<tr><td><a href="{% url 'radler_detail' pk=r.pk %}">{{ r.nname }}, {{ r.vname }}</a></td><td class='km'>{{ r.gesamtkm }}</td><tr>
+			<tr><th>Platz {{forloop.counter}}</th><th>Tage</th><th>km</th></tr>
+			<tr><td><a href="{% url 'radler_detail' pk=r.pk %}">{{ r.nname }}, {{ r.vname }}</a></td><td class="km">{{ r.gesamttage }}</td><td class='km'>{{ r.gesamtkm }}</td><tr>
 		</table>
         </div>
     {% endfor %}
