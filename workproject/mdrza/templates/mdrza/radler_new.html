@@ -4,17 +4,17 @@
         <div class="radler">
 		{% if not user.radler.pk %}
 		<h1>Hallo neuer Radler!</h1>
-		Vervollständige dein Profil!
+		<h3>Vervollständige Dein Profil!</h3>
 		{% else %}
 		<h1>Profil bearbeiten</h2>
 		{% endif %}
 	{% if user.is_authenticated %}
+		<br/><p class="erlaeuterung">Du musst Mitglied in einem Team sein.<br/>Ist Dein Team in der Auswahl nicht aufgeführt, erstellst Du erst ein <a href="{% url 'team_new' %}"><span class="wichtig">neues Team</span></a> und kommst wieder hierher zurück.<br/>Sollen wir Dich einem Team zuordnen, wähle das Team "bitte zuordnen" aus.</p>
 	    <form method="POST" class="radler-form">{% csrf_token %}
 		<table class="radler">
 		{{ form.as_table }}
 		</table>
-		<p class="erlaeuterung">Im Feld "km" geben Sie die täglich zu fahrenden Strecke - kombiniert Hin- und Rückweg - in vollen km ein.<br/><br/>
-		Gibt es Ihr Team noch nicht, wählen Sie erst "Weiss nicht" aus. Danach legen Sie ein <a href="{% url 'team_new' %}">neues Team</a> an und kommen hierher zurück.</p>
+		<p class="erlaeuterung">Gib im Feld "Tages-km" die täglich zu fahrenden Strecke - kombiniert Hin- und Rückweg - in vollen km ein.</p>
 		<button type="submit" class="save btn btn-default btn-lg">Speichern</button>
 	    </form>
 	{% else %}

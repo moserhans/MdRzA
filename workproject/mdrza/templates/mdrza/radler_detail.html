@@ -12,9 +12,9 @@
 	</p>
     </div>
     <h2>Wochenkilometer
-	{% if user.is_authenticated and user.pk == radler.user.pk %}
+	<!-- {% if user.is_authenticated and user.pk == radler.user.pk %}
 	<a class="btn btn-default btn-sm" href="{% url 'woche_new' %}"><span class="glyphicon glyphicon-plus"></span></a>
-	{% endif %}
+	{% endif %} -->
     </h2>
     {% for woche in radler.weeks.all %}
     <ul>

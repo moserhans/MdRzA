@@ -2,11 +2,11 @@
 
 {% block content %}
         <div class="team">
-	    <h1>Team bearbeiten</h1>
+	    <h1>Neues Team anlegen</h1>
 	{% if user.is_authenticated %}
 	    <form method="POST" class="team-form">{% csrf_token %}
 		{{ form.as_p }}
-		<button type="submit" class="save btn btn-default">Save</button>
+		<button type="submit" class="save btn btn-default">Speichern</button>
 	    </form>
 	{% else %}
 		Bitte erst <a href="mdrza/">anmelden!</a>
