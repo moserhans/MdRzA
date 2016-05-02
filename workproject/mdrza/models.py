@@ -13,13 +13,13 @@ class radler(models.Model):
 	km = models.PositiveSmallIntegerField(null=True)
 	gesamtkm = models.PositiveSmallIntegerField(null=True)
 	gesamttage = models.PositiveSmallIntegerField(null=True,default=0)
-	def __str__(self):
+	def __unicode__(self):
 		return self.email
 
 class team(models.Model):
 	name = models.CharField(max_length=100)
 	gesamtkm = models.PositiveSmallIntegerField(null=True)
-	def __str__(self):
+	def __unicode__(self):
 		return self.name
 
 class woche(models.Model):
