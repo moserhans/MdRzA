@@ -142,7 +142,7 @@ def check_woche_neu(Woche):
 	w = Woche.kwnr
 	n = Woche.user.pk
 	userweeks = woche.objects.filter(user=n).filter(kwnr=w)
-	if len(userweeks) > 0 and Woche.pk is not userweeks[0].pk:
+	if (len(userweeks) > 0) and (Woche.pk != userweeks[0].pk):
 		fine = False
 		msg = 'Die Woche existiert bereits, bitte die KW bearbeiten!'
 	else:
